@@ -248,3 +248,34 @@ footer {
     transform: scale(1);
   }
 }
+/* ===== V2 : animations ===== */
+html { scroll-behavior: smooth; }
+
+@keyframes apparition {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero { animation: apparition 0.9s ease-out both; }
+
+/* apparition des blocs au défilement */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.visible { opacity: 1; transform: none; }
+
+/* effet au survol des cartes */
+.carte { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.carte:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* respect des utilisateurs qui désactivent les animations */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}

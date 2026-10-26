@@ -6,6 +6,23 @@
     <title>Portfolio — nada mahrouz</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<script>
+  document.documentElement.classList.add('js');
+  document.addEventListener('DOMContentLoaded', () => {
+    const obs = new IntersectionObserver((entrees) => {
+      entrees.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.bloc, .carte').forEach((el) => {
+      el.classList.add('reveal');
+      obs.observe(el);
+    });
+  });
+</script>
 <body>
     <header class="entete">
         <nav class="menu">
